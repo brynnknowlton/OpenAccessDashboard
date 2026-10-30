@@ -14,7 +14,9 @@ st.write(
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
+st.dataframe(df)
 
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.Title} has a :{row.Author}:")
+print(f'Total rows read: {len(df)}')
+st.metric(label="Total rows read", value=df.shape[0])
+st.subheader("Last 5 Rows of Data")
+st.dataframe(df.tail())
