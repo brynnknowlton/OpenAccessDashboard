@@ -10,3 +10,6 @@ dependencies = [
 
 [tool.uv]
 package = false
+# .streamlit/secrets.toml
+[connections.gsheets]
+spreadsheet = "https://docs.google.com/spreadsheets/d/1sy7PdahgXAdMpimSvbH-Qb2A3c47ERnuRqxYauW9M4s/"
