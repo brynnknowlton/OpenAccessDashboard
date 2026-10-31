@@ -39,19 +39,20 @@ for i in range(len(df)):
         if df.iloc[i]["Topic"] in open_access_dict:
             open_access_dict[df.iloc[i]["Topic"]] = open_access_dict[df.iloc[i]["Topic"]] + 1
         else: 
-            open_access_dict[df.iloc[i]["Topic"]] = 1
+            open_access_dict[df.iloc[i]["Topic"]] = 1.0
     else:
         if df.iloc[i]["Topic"] in not_oa_dict:
             not_oa_dict[df.iloc[i]["Topic"]] = not_oa_dict[df.iloc[i]["Topic"]] + 1
         else:
-            not_oa_dict[df.iloc[i]["Topic"]] = 1
+            not_oa_dict[df.iloc[i]["Topic"]] = 1.0
 for topic in total_dict:
     if topic in open_access_dict:
         percent_open_access_dict["Topic"].append(topic)
-        percent_open_access_dict["Percent Open Access"].append((open_access_dict[topic] / total_dict[topic]) * 100.0)
+        percent_open_access_dict["Percent Open Access"].append(float((open_access_dict[topic] / total_dict[topic]) * 100.0))
     else:
         percent_open_access_dict["Topic"].append(topic)
-        percent_open_access_dict["Percent Open Access"].append(0)
+        percent_open_access_dict["Percent Open Access"].append(0.0)
+
 st.metric("Total rows read", df.shape[0])
 
 selected_topics = st.multiselect("Select Topics", options=list(total_dict.keys()))
