@@ -24,9 +24,16 @@ def load_data():
 
 df = load_data()
 
-open_access_dict = {}
+# Initialize dictionaries to store open access, non-open access, and total counts per topic, as well as a percent open access dictionary
+open_access_dict = {} 
 not_oa_dict = {}
+total_dict = {}
+percent_open_access_dict = {}
 for i in range(len(df)):
+    if df.iloc[i]["Topic"] in total_dict:
+        total_dict[df.iloc[i]["Topic"]] = total_dict[df.iloc[i]["Topic"]] + 1
+    else:
+        total_dict[df.iloc[i]["Topic"]] = 1
     if df.iloc[i]["Open access"] == "Open Access":
         if df.iloc[i]["Topic"] in open_access_dict:
             open_access_dict[df.iloc[i]["Topic"]] = open_access_dict[df.iloc[i]["Topic"]] + 1
@@ -37,11 +44,15 @@ for i in range(len(df)):
             not_oa_dict[df.iloc[i]["Topic"]] = not_oa_dict[df.iloc[i]["Topic"]] + 1
         else:
             not_oa_dict[df.iloc[i]["Topic"]] = 1
+for topic in total_dict:
+    if topic in open_access_dict:
+        percent_open_access_dict[topic] = (open_access_dict[topic] / total_dict[topic]) * 100
+    else:
+        percent_open_access_dict[topic] = 0
 st.metric("Total rows read", df.shape[0])
-st.subheader("Open Access Topics")
-st.write(open_access_dict)
-st.subheader("Non-Open Access Topics")
-st.write(not_oa_dict)
+st.subheader("Percent Open Access Topics")
+st.write(percent_open_access_dict)
+
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
