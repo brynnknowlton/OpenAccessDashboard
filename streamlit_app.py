@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 
+
+
 st.title("Open Access Dashboard of CSUSB Authors")
 
 st.write(
@@ -22,10 +24,16 @@ def load_data():
 
 df = load_data()
 
+oa_sum = []
+for row in df.itertuples():
+    if row[4] == "Open Access":
+        oa_sum.append(1)
+    else: 
+        oa_sum.append(0)
 
-
-st.write(f"Total rows read: {len(df)}")
+    
 st.metric("Total rows read", df.shape[0])
+st.metric("Open Access Publications", sum(oa_sum))
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
