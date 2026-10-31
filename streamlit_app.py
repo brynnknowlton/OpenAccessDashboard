@@ -1,23 +1,28 @@
 import streamlit as st
-from streamlit import connections
 from streamlit_gsheets import GSheetsConnection
 
-
-
 st.title("🎈 My new app")
+
 st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+    "Let's start building! For help and inspiration, visit "
+    "[docs.streamlit.io](https://docs.streamlit.io/)."
 )
-# .streamlit/secrets.toml
-# Create a connection object.
-conn = st.connection("gsheets", type=GSheetsConnection)
 
-@st.cache_data(ttl=3600)  # one hour
+conn = st.connection(
+    "gsheets",
+    type=GSheetsConnection
+)
 
-df = conn.read()
+@st.cache_data(ttl=3600)
+def load_data():
+    return conn.read()
+
+df = load_data()
+
 st.dataframe(df)
 
-print(f'Total rows read: {len(df)}')
-st.metric(label="Total rows read", value=df.shape[0])
+st.write(f"Total rows read: {len(df)}")
+st.metric("Total rows read", df.shape[0])
+
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
