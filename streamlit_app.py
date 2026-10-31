@@ -18,7 +18,7 @@ conn = st.connection(
 def load_data():
     return conn.read(
         spreadsheet="https://docs.google.com/spreadsheets/d/1sy7PdahgXAdMpimSvbH-Qb2A3c47ERnuRqxYauW9M4s/edit",
-        worksheet="Sheet1"
+        worksheet="0"
     )
 
 df = load_data()
