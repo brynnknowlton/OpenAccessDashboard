@@ -38,7 +38,9 @@ for i in range(len(df)):
         else:
             not_oa_dict[df.iloc[i]["Topic"]] = 1
 st.metric("Total rows read", df.shape[0])
+st.subheader("Open Access Topics")
 st.write(open_access_dict)
+st.subheader("Non-Open Access Topics")
 st.write(not_oa_dict)
 
 st.subheader("Last 5 Rows of Data")
