@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
+import pandas as pd
 
 
 
@@ -28,7 +29,7 @@ df = load_data()
 open_access_dict = {} 
 not_oa_dict = {}
 total_dict = {}
-percent_open_access_dict = {}
+percent_open_access_dict = {"Topic": [], "Percent Open Access": []}
 for i in range(len(df)):
     if df.iloc[i]["Topic"] in total_dict:
         total_dict[df.iloc[i]["Topic"]] = total_dict[df.iloc[i]["Topic"]] + 1
@@ -46,13 +47,17 @@ for i in range(len(df)):
             not_oa_dict[df.iloc[i]["Topic"]] = 1
 for topic in total_dict:
     if topic in open_access_dict:
-        percent_open_access_dict[topic] = (open_access_dict[topic] / total_dict[topic]) * 100
+        percent_open_access_dict["Topic"].append(topic)
+        percent_open_access_dict["Percent Open Access"].append((open_access_dict[topic] / total_dict[topic]) * 100.0)
     else:
-        percent_open_access_dict[topic] = 0
+        percent_open_access_dict["Topic"].append(topic)
+        percent_open_access_dict["Percent Open Access"].append(0)
 st.metric("Total rows read", df.shape[0])
 st.subheader("Percent Open Access Topics")
 st.write(percent_open_access_dict)
 
+st.subheader("Line Chart from Dictionary")
+st.line_chart(pd.DataFrame(percent_open_access_dict), x="Topic", y="Percent Open Access")
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
