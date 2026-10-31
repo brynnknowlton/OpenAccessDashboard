@@ -24,16 +24,17 @@ def load_data():
 
 df = load_data()
 
-oa_sum = []
-for row in df:
-    if row[4] == "Open Access":
-        oa_sum.append(1)
-    else: 
-        oa_sum.append(0)
-
+open_access_dict = {
     
+}
+for i in range(len(df)):
+    if df.iloc[i]["Open access"] == "Open Access":
+        if df.iloc[i]["Topic"] in open_access_dict:
+            open_access_dict[df.iloc[i]["Topic"]] = open_access_dict[df.iloc[i]["Topic"]] + 1
+        else: 
+            open_access_dict[df.iloc[i]["Topic"]] = 1
 st.metric("Total rows read", df.shape[0])
-st.metric("Open Access Publications", sum(oa_sum))
+st.write(open_access_dict)
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
