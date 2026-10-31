@@ -53,11 +53,17 @@ for topic in total_dict:
         percent_open_access_dict["Topic"].append(topic)
         percent_open_access_dict["Percent Open Access"].append(0)
 st.metric("Total rows read", df.shape[0])
+
+selected_topics = st.multiselect("Select Topics", options=list(total_dict.keys()))
+
 st.subheader("Percent Open Access Topics")
-st.write(percent_open_access_dict)
+st.write({topic: percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics})
 
 st.subheader("Line Chart from Dictionary")
-st.line_chart(pd.DataFrame(percent_open_access_dict), x="Topic", y="Percent Open Access")
+st.line_chart(pd.DataFrame({
+    "Topic": [topic for topic in selected_topics],
+    "Percent Open Access": [percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics]
+}), x="Topic", y="Percent Open Access")
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
