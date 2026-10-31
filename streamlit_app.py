@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 
-st.title("🎈 My new app")
+st.title("Open Access Dashboard of CSUSB Authors")
 
 st.write(
     "Let's start building! For help and inspiration, visit "
@@ -23,7 +23,7 @@ def load_data():
 
 df = load_data()
 
-st.dataframe(df)
+
 
 st.write(f"Total rows read: {len(df)}")
 st.metric("Total rows read", df.shape[0])
