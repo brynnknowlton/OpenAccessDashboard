@@ -4,8 +4,7 @@ from streamlit_gsheets import GSheetsConnection
 st.title("Open Access Dashboard of CSUSB Authors")
 
 st.write(
-    "Let's start building! For help and inspiration, visit "
-    "[docs.streamlit.io](https://docs.streamlit.io/)."
+   "Reviewing the open access status of CSUSB authors, this dashboard provides insights into the number of publications and their accessibility. The data is sourced from OpenAlex, which tracks the open access status of various publications by CSUSB authors."
 )
 
 conn = st.connection(
