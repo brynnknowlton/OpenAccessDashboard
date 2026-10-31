@@ -25,7 +25,7 @@ def load_data():
 df = load_data()
 
 oa_sum = []
-for row in df.itertuples():
+for row in df:
     if row[4] == "Open Access":
         oa_sum.append(1)
     else: 
