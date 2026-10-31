@@ -24,17 +24,22 @@ def load_data():
 
 df = load_data()
 
-open_access_dict = {
-    
-}
+open_access_dict = {}
+not_oa_dict = {}
 for i in range(len(df)):
     if df.iloc[i]["Open access"] == "Open Access":
         if df.iloc[i]["Topic"] in open_access_dict:
             open_access_dict[df.iloc[i]["Topic"]] = open_access_dict[df.iloc[i]["Topic"]] + 1
         else: 
             open_access_dict[df.iloc[i]["Topic"]] = 1
+    else:
+        if df.iloc[i]["Topic"] in not_oa_dict:
+            not_oa_dict[df.iloc[i]["Topic"]] = not_oa_dict[df.iloc[i]["Topic"]] + 1
+        else:
+            not_oa_dict[df.iloc[i]["Topic"]] = 1
 st.metric("Total rows read", df.shape[0])
 st.write(open_access_dict)
+st.write(not_oa_dict)
 
 st.subheader("Last 5 Rows of Data")
 st.dataframe(df.tail())
