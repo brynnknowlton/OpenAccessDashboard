@@ -48,7 +48,7 @@ for i in range(len(df)):
 for topic in total_dict:
     if topic in open_access_dict:
         percent_open_access_dict["Topic"].append(topic)
-        percent_open_access_dict["Percent Open Access"].append(float((open_access_dict[topic] / total_dict[topic]) * 100.0))
+        percent_open_access_dict["Percent Open Access"].append(round(float((open_access_dict[topic] / total_dict[topic]) * 100.0), 2))
     else:
         percent_open_access_dict["Topic"].append(topic)
         percent_open_access_dict["Percent Open Access"].append(0.0)
