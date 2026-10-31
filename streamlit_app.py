@@ -1,8 +1,7 @@
 import streamlit as st
 from streamlit import connections
 from streamlit_gsheets import GSheetsConnection
-import pandas as pd
-import numpy as np
+
 
 
 st.title("🎈 My new app")
@@ -12,6 +11,8 @@ st.write(
 # .streamlit/secrets.toml
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
+
+@st.cache_data(ttl=3600)  # one hour
 
 df = conn.read()
 st.dataframe(df)
