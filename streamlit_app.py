@@ -30,6 +30,8 @@ open_access_dict = {}
 not_oa_dict = {}
 total_dict = {}
 percent_open_access_dict = {"Topic": [], "Percent Open Access": []}
+ 
+# Iterate through the dataframe to populate the dictionaries with open access, non-open access, and total counts per topic
 for i in range(len(df)):
     if df.iloc[i]["Topic"] in total_dict:
         total_dict[df.iloc[i]["Topic"]] = total_dict[df.iloc[i]["Topic"]] + 1
@@ -45,6 +47,8 @@ for i in range(len(df)):
             not_oa_dict[df.iloc[i]["Topic"]] = not_oa_dict[df.iloc[i]["Topic"]] + 1
         else:
             not_oa_dict[df.iloc[i]["Topic"]] = 1.0
+
+# Calculate the percent open access for each topic based on the populated dictionariese
 for topic in total_dict:
     if topic in open_access_dict:
         percent_open_access_dict["Topic"].append(topic)
@@ -53,18 +57,17 @@ for topic in total_dict:
         percent_open_access_dict["Topic"].append(topic)
         percent_open_access_dict["Percent Open Access"].append(0.0)
 
-st.metric("Total rows read", df.shape[0])
 
+# Allow the user to select topics from the available list of topics
 selected_topics = st.multiselect("Select Topics", options=list(total_dict.keys()))
-
 st.subheader("Percent Open Access Topics")
 st.write({topic: percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics})
 
+
+# Display a line chart of the percent open access for the selected topics
 st.subheader("Line Chart from Dictionary")
 st.line_chart(pd.DataFrame({
     "Topic": [topic for topic in selected_topics],
     "Percent Open Access": [percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics]
 }), x="Topic", y="Percent Open Access")
 
-st.subheader("Last 5 Rows of Data")
-st.dataframe(df.tail())
