@@ -61,7 +61,10 @@ for topic in total_dict:
 # Allow the user to select topics from the available list of topics
 selected_topics = st.multiselect("Select Topics", options=list(total_dict.keys()))
 st.subheader("Percent Open Access Topics")
-st.write({topic: float(percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)])for topic in selected_topics})
+st.write({
+    topic: f"{percent_open_access_dict['Percent Open Access'][percent_open_access_dict['Topic'].index(topic)]:.2f}%"
+    for topic in selected_topics
+})
 
 
 # Display a line chart of the percent open access for the selected topics
