@@ -1,11 +1,11 @@
 [theme.light]
-primaryColor = "#ff0000"
+primaryColor = "#578bca"
 backgroundColor = "#c2c5ff"         # Main background color
 secondaryBackgroundColor = "#F0F2F6" # Sidebar and widget background
 textColor = "#121524"
 
 [theme.dark]
-primaryColor = "#ff0000"
+primaryColor = "#649ecb"
 backgroundColor = "#17193d"         # Main background color
 secondaryBackgroundColor = "#F0F2F6" # Sidebar and widget background
 textColor = "#c5c6ca"
