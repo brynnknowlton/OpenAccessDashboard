@@ -72,7 +72,7 @@ display_df = pd.DataFrame([
     for topic in selected_topics
 ])
 
-st.dataframe(display_df, hide_index=False)
+st.dataframe(display_df, hide_index=True)
 
 
 # Display a line chart of the percent open access for the selected topics
