@@ -71,6 +71,7 @@ st.write({
 st.subheader("Line Chart from Dictionary")
 st.bar_chart(pd.DataFrame({
     "Topic": [topic for topic in selected_topics],
-    "Percent Open Access": [percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics]
+    "Percent Open Access": [f"{percent_open_access_dict['Percent Open Access'][percent_open_access_dict['Topic'].index(topic)]:.2f}%"
+    for topic in selected_topics]
 }), x="Topic", y="Percent Open Access")
 
