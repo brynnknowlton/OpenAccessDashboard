@@ -61,19 +61,18 @@ for topic in total_dict:
 # Allow the user to select topics from the available list of topics
 selected_topics = st.multiselect("Select Topics", options=list(total_dict.keys()))
 st.subheader("Percent Open Access Topics")
-# Create the filtered dictionary
-selected_data = {
-    topic: float(percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)])
+import pandas as pd
+
+# Turn the selected items into a flat table layout
+display_df = pd.DataFrame([
+    {
+        "Topic": topic, 
+        "Percent Open Access": f"{percent_open_access_dict['Percent Open Access'][percent_open_access_dict['Topic'].index(topic)]:.2f}%"
+    }
     for topic in selected_topics
-}
+])
 
-# Display each one as a crisp metric component
-if selected_topics:
-    # Optional: Display them side-by-side using columns
-    cols = st.columns(len(selected_topics))
-    for col, (topic, val) in zip(cols, selected_data.items()):
-        col.write(label=topic, value=f"{val:.2f}%")
-
+st.dataframe(display_df, hide_index=True)
 
 
 # Display a line chart of the percent open access for the selected topics
