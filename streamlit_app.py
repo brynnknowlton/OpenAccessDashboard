@@ -72,7 +72,7 @@ if selected_topics:
     # Optional: Display them side-by-side using columns
     cols = st.columns(len(selected_topics))
     for col, (topic, val) in zip(cols, selected_data.items()):
-        col.metric(label=topic, value=f"{val:.2f}%")
+        col.write(label=topic, value=f"{val:.2f}%")
 
 
 
