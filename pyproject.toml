@@ -12,3 +12,10 @@ dependencies = [
 [tool.uv]
 package = false
 # .streamlit/secrets.toml
+
+
+[theme]
+primaryColor = "#FF4B4B"
+backgroundColor = "#FFFFFF"         # Main background color
+secondaryBackgroundColor = "#F0F2F6" # Sidebar and widget background
+textColor = "#31333F"
