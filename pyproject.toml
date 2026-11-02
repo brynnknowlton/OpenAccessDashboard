@@ -15,7 +15,7 @@ package = false
 
 
 [theme]
-primaryColor = "#FF4B4B"
-backgroundColor = "#FFFFFF"         # Main background color
+primaryColor = "#ff0000"
+backgroundColor = "#5158d8"         # Main background color
 secondaryBackgroundColor = "#F0F2F6" # Sidebar and widget background
 textColor = "#31333F"
