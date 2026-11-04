@@ -7,5 +7,5 @@ textColor = "#121524"
 [theme.dark]
 primaryColor = "#2c506b"
 backgroundColor = "#17193d"         # Main background color
-secondaryBackgroundColor = "#aac6ff" # Sidebar and widget background
+secondaryBackgroundColor = "#2c374d" # Sidebar and widget background
 textColor = "#f5f5f5"
