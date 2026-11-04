@@ -3,6 +3,7 @@ primaryColor = "#578bca"
 backgroundColor = "#c2c5ff"         # Main background color
 secondaryBackgroundColor = "#F0F2F6" # Sidebar and widget background
 textColor = "#121524"
+font = "sans-serif"
 
 [theme.dark]
 primaryColor = "#2c506b"
