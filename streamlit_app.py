@@ -76,7 +76,7 @@ st.dataframe(display_df, hide_index=True)
 
 
 # Display a line chart of the percent open access for the selected topics
-st.subheader("Line Chart from Dictionary")
+st.subheader("Bar Chart of Topics")
 st.bar_chart(pd.DataFrame({
     "Topic": [topic for topic in selected_topics],
     "Percent Open Access": [percent_open_access_dict["Percent Open Access"][percent_open_access_dict["Topic"].index(topic)] for topic in selected_topics]
